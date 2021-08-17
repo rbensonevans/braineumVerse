@@ -1,0 +1,367 @@
+const Web3 = require("web3");
+const net = require("net");
+const shell = require('shelljs')
+
+const webSocketsServerPort = 8000;
+const webSocketServer = require('websocket').server;
+const http = require('http');
+const { DefaultDeserializer } = require("v8");
+
+var intervalObj = null;
+var new_coins = 0;
+
+// One starts out life with 100 'BRAI' coins.
+var LifeCoins = 100;
+
+// Spinning the http server and the websocket server.
+const server = http.createServer();
+server.listen(webSocketsServerPort);
+console.log('Hello World: http listening on port 8000');
+
+
+const wsServer = new webSocketServer({
+  httpServer: server
+});
+
+var web3_chain1 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_1/geth.ipc', net);
+var web3_chain2 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_2/geth.ipc', net);
+var web3_chain3 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_3/geth.ipc', net);
+var web3_chain4 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_4/geth.ipc', net);
+var web3_chain5 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_5/geth.ipc', net);
+
+earth = 0;
+moon = 0;
+mars = 0;
+jupiter = 0;
+pluto = 0;
+miningOnFlag = 0;
+
+const clients = {};
+
+// This code generates unique userid for everyuser.
+const getUniqueID = () => {
+  const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  return s4() + s4() + '-' + s4();
+};
+
+// Main scene sequence.
+var event_number = 1; // send events from 1 to 20; 0 is the initially displayed scene.
+var event_number_paused = 1; // initially set to event_number.
+
+// flags.
+var main_script = 1;
+var teleport_macys = 0;
+var teleport_starbucks = 0;
+
+var noPubAddress = "";
+var noToken = 0;
+var pubAddress = "0xljweoisdfljsdlfieesjfjdljfal";
+var tokenValue = 60;
+
+wsServer.on('request', function (request) {
+ var userID = getUniqueID();
+  console.log((new Date()) + ' Recieved a new connection from origin ' + request.origin + '.');
+
+  // You can rewrite this part of the code to accept only the requests from allowed origin
+  const connection = request.accept(null, request.origin);
+  console.log('connected: ');
+
+
+  clients[userID] = connection;
+  console.log('connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
+
+  function sendMessageToClient(amountEarned, brainRegion, infoMsg, imageIndex, pubAddress, wonToken) {
+    // REVISIT!! assume more than one connection for now. Should only be one.
+
+  var current = new Date();
+  var dateTimeVal = current.toLocaleString();
+
+    for(key in clients) {
+       clients[key].send(JSON.stringify({
+          type: "message",
+          amount: amountEarned, 
+          region: brainRegion,
+          infomsg: infoMsg,
+	  imageindex: imageIndex,
+	  pubaddress: pubAddress,
+	  wontoken: wonToken,
+	  datetimeval: dateTimeVal,
+          miner1: "Earth: " + earth,
+          miner2: "Moon: " + moon,
+          miner3: "Mars: " + mars,
+          miner4: "Jupiter: " + jupiter,
+          miner5: "Pluto: " + pluto,
+          miningonflag: miningOnFlag
+    }))
+   }
+  }
+
+  function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+  }
+
+
+  function getStarbucksMeetingScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+          return("QmPXkR23vecWM6V5ojv84Cngx6SErjFfVsgL59P3V98KH3");
+
+        case 1:
+          return("QmVM97hK2gRPL64CVPdFWrbT7sXzKMwmq8pE7mKXQodkKn");
+
+        case 2:
+          return("QmTW3M7RJeQzXTiQ2KbnWvxyKTprdaVTrqYTbFiuMzFHCg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+          return("QmTW3M7RJeQzXTiQ2KbnWvxyKTprdaVTrqYTbFiuMzFHCg");
+    }
+   }
+
+  function getMacysScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+          return("QmNxHByd376GmJjKpd8eU9S8zv6MoQig1jZwYdS7bu1bbX");
+
+        case 1:
+          return("QmUYJWzrTi2U6gvyJh3Rs3yBpXyiBrppPhraLYyrwLRL3n");
+
+        case 2:
+          return("QmT22uLYQt1UkskfyxUHyNhjxvUvSqsuDT7RmJwG7tLyL3");
+
+        case 3:
+          return("QmVTmDftD1wAMVjF1x3BMmf7SP9smzHyh2s1Gqyp56DVQj");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+          return("QmVTmDftD1wAMVjF1x3BMmf7SP9smzHyh2s1Gqyp56DVQj");
+    }
+   }
+
+
+  function getMacysScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("QmX3QAonUPVZQtJjGVNFdAEkTnwwbhLLxbAzq39gy8Tc7V");
+
+        case 2:
+          return("QmcNjUbcYmMbUgPpE5m6WDbR5zHjY5YLMGdKaHDA4p1Eyu");
+
+        case 3:
+          return("QmYtYE9Wf8zcKnoX11mqJuzkCcbHevymHyFq7KmnxTKkcr");
+
+        case 4:
+          return("QmVKv23fzCkDhbg5i9kHrFh8AojDed39xsCwUALeFNLP9g");
+
+        case 5:
+          return("");
+
+        case 6:
+          return("");
+
+        case 7:
+          return("");
+
+        case 8:
+          return("");
+
+        case 9:
+          return("");
+
+        case 10:
+          return("");
+
+        case 11:
+          return("");
+
+        case 12:
+          return("");
+
+        case 13:
+          return("");
+
+        case 14:
+          return("");
+
+        case 15:
+          return("");
+
+        case 16:
+          return("");
+
+        case 17:
+          return("");
+
+        case 18:
+          return("");
+
+        case 19:
+          return("");
+
+        case 20:
+          return("");
+
+        case 21:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+          return("");
+    }
+   }
+  }
+
+  
+  function startBlockchainGame(arg) {
+    console.log(`arg was => ${arg}`);
+
+    sendMessageToClient(0, -9, "", event_number, noPubAddress, noToken);
+    event_number += 1;
+
+    // the main scene.
+    if (main_script)
+    {
+       if (event_number >= 21) {
+           event_number = 1;
+           clearInterval(intervalObj);  // stop sending events.
+       }
+       return;
+    }
+
+    if (teleport_starbucks)
+    {
+	// starbucks meeting.
+	if (event_number >= 28) {
+     	    event_number = 25; // wrap around.
+	}
+	return;
+    }
+
+    if (teleport_macys)
+    {
+	// the macys shopping scene.
+	if (event_number >= 25) {
+     	    event_number = 21; // wrap around.
+	}
+	return;
+    }
+
+    // some error; go to main_script.
+    main_script = 1;
+  } 
+    
+
+  var usermsg = null;
+
+  connection.on('message', function(message) {
+    
+    if (message.type === 'utf8') {
+      console.log('Received Message: ', message.utf8Data);
+      usermsg = JSON.parse(message.utf8Data);
+    }
+
+    if (usermsg.msg === "StartBraineumAI") {
+      console.log("Hey Benson: Start BraineumAI Received");
+      main_script = 1;
+      event_number = 1; // reset.
+      teleport_macys = 0; // turn off teleports; back to main script.
+      teleport_starbucks = 0; // turn off teleports; back to main script.
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      return;
+    }  
+  
+    if (usermsg.msg === "PauseBraineumAI") {
+      console.log("Hey Benson: Pause BraineumAI Received");
+      clearInterval(intervalObj);
+      return;
+    }
+
+    if (usermsg.msg === "ContinueBraineumAI") {
+      console.log("Hey Benson: Continue BraineumAI Received");
+      main_script = 1;
+      teleport_macys = 0; // turn off teleports; back to main script.
+      teleport_starbucks = 0; // turn off teleports; back to main script.
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      return;
+    }
+
+    if (usermsg.msg === "TeleportMacys") {
+      if (main_script)
+      {
+          event_number_paused = event_number; // save our location only if in main_script.
+      }
+      event_number = 21; // start macy's stream.
+      teleport_macys = 1;
+      main_script = 0;
+      teleport_starbucks = 0;
+      console.log("Hey Benson: TeleportMacys Received");
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      return;
+    }
+
+    if (usermsg.msg === "TeleportStarbucks") {
+      if (main_script)
+      {
+          event_number_paused = event_number; // save our location only if in main_script.
+      }
+      event_number = 25; // start macy's stream.
+      teleport_starbucks = 1;
+      main_script = 0;
+      teleport_macys = 0;
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      console.log("Hey Benson: TeleportStarbucks Received");
+      return;
+    }
+
+    if (usermsg.msg === "PauseTeleport") {
+      console.log("Hey Benson: PauseTeleport Received");
+      clearInterval(intervalObj);
+      return;
+    }
+
+    if (usermsg.msg === "ContinueTeleport") {
+      console.log("Hey Benson: ContinueTeleport Received");
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      return;
+    }
+
+    if (usermsg.msg === "EndTeleport") {
+      console.log("Hey Benson: EndTeleport Received");
+      teleport_macys = 0; // turn it off.
+      teleport_starbucks = 0; // turn it off.
+      main_script = 1;
+      event_number = event_number_paused; // reinstate location in main scene.
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      return;
+    }
+
+    if (usermsg.msg === "StartMiners") {
+      miningOnFlag = 1;
+      console.log("Hey Benson: Start Miners Received");
+      shell.exec('/Users/benson/BRAINEUM_HACKATHON/dev/braineum/braineum/hack_src/run_miner_start_all.sh');
+      return;
+    }
+  
+    if (usermsg.msg === "StopMiners") {
+      miningOnFlag = 0;
+      console.log("Hey Benson: Stop Miners Received");
+      shell.exec('/Users/benson/BRAINEUM_HACKATHON/dev/braineum/braineum/hack_src/run_miner_stop_all.sh');
+      return;
+    }   
+      // REVISIT!! TO BE FIXED. broadcasting message to all connected clients
+      //for(key in clients) {
+        //clients[key].sendUTF(message.utf8Data);
+        //console.log('sent Message to: ', clients[key]);
+      //} 
+    })
+});
+

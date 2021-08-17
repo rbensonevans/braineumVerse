@@ -1,0 +1,16 @@
+    if (usermsg.msg === "TeleportStarbucks") {
+      if (main_script)
+      {
+          event_number_paused = event_number; // save our location only if in main_script.
+      }
+      event_number = 25; // start starbuck's stream.
+      //event_number = 0; // blockchain version. 
+      teleport_starbucks = 1;
+      main_script = 0;
+      teleport_macys = 0;
+      clearInterval(intervalObj);
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+      console.log("Hey Benson: TeleportStarbucks Received");
+      return;
+    }
+

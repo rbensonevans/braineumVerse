@@ -1,0 +1,82 @@
+   function message_producer_basics(cid_val) {
+       if (cid_val === "EOF") {
+           event_number = 0;
+           clearInterval(intervalObj);  // stop sending events.
+           // Send the EOF to the client. 
+           sendMessageToClient(0, -9, "", event_number, cid_val, noToken);
+           return;
+       }
+       sendMessageToClient(0, -9, "", event_number, cid_val, noToken);
+       event_number += 1;
+       return;
+    }
+
+    if (teleport_brooklyn_museum)
+    {  
+       cid = getBrooklynMuseumScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_random_new)
+    {  
+       cid = getRandomNewScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_home)
+    {  
+       cid = getHomeScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_global)
+    {  
+       cid = getGlobalScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+	      
+    if (teleport_friends)
+    {  
+       cid = getFriendsScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_cities)
+    {  
+       cid = getCitiesScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_live_event)
+    {  
+       cid = getLiveEventScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_flatbush_ave)
+    {  
+       cid = getFlatbushAveScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_news)
+    {  
+       cid = getNewsScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }
+        
+    if (teleport_suggestions)
+    {  
+       cid = getSuggestionsScene(event_number);
+       message_producer_basics(cid);
+       return;
+    }

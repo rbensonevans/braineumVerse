@@ -1,0 +1,27 @@
+
+  function getMacysScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+

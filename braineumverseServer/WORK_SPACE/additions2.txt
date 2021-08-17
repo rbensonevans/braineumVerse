@@ -1,0 +1,98 @@
+	
+	function teleport_basics() {
+	{
+	      if (main_script)
+	      {
+	          event_number_paused = event_number; // save our location only if in main_script.
+	      }
+	      event_number = 0; // blockchain version. 
+	      main_script = 0;
+	      teleport_macys = 0;
+	      clearInterval(intervalObj);
+	      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+	      return;
+	    }
+	}
+	
+	if (usermsg.msg === "TeleportBrooklynMuseum") {
+	{
+	      teleport_basics();
+	      teleport_brooklyn_museum = 1;
+	      console.log("Hey Benson: TeleportBrooklynMuseum Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportRandomNew") {
+	{
+	      teleport_basics();
+	      teleport_random_new = 1;
+	      console.log("Hey Benson: TeleportRandomNew Received");
+	      return;
+	}
+	
+	
+	if (usermsg.msg === "TeleportHome") {
+	{
+	      teleport_basics();
+	      teleport_home = 1;
+	      console.log("Hey Benson: TeleportHome Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportGlobal") {
+	{
+	      teleport_basics();
+	      teleport_global = 1;
+	      console.log("Hey Benson: TeleportGlobal Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportFriends") {
+	{
+	      teleport_basics();
+	      teleport_friends = 1;
+	      console.log("Hey Benson: TeleportFriends Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportCities") {
+	{
+	      teleport_basics();
+	      teleport_cities = 1;
+	      console.log("Hey Benson: TeleportCities Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportLiveEvent") {
+	{
+	      teleport_basics();
+	      teleport_live_event = 1;
+	      console.log("Hey Benson: TeleportLiveEvent Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportFlatbushAvenue") {
+	{
+	      teleport_basics();
+	      teleport_flatbush_ave = 1;
+	      console.log("Hey Benson: TeleportFlatbushAve Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportNews") {
+	{
+	      teleport_basics();
+	      teleport_news = 1;
+	      console.log("Hey Benson: TeleportNews Received");
+	      return;
+	}
+	
+	if (usermsg.msg === "TeleportSuggestions") {
+	{
+	      teleport_basics();
+	      teleport_suggestions = 1;
+	      console.log("Hey Benson: TeleportSuggestions Received");
+	      return;
+	}
+	
+	

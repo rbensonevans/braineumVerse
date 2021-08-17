@@ -1,0 +1,368 @@
+const Web3 = require("web3");
+const net = require("net");
+const shell = require('shelljs')
+
+const webSocketsServerPort = 8000;
+const webSocketServer = require('websocket').server;
+const http = require('http');
+const { DefaultDeserializer } = require("v8");
+
+var intervalObj = null;
+var new_coins = 0;
+
+// One starts out life with 100 'BRAI' coins.
+var LifeCoins = 100;
+
+// Spinning the http server and the websocket server.
+const server = http.createServer();
+server.listen(webSocketsServerPort);
+console.log('Hello World: http listening on port 8000');
+
+
+const wsServer = new webSocketServer({
+  httpServer: server
+});
+
+var web3_chain1 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_1/geth.ipc', net);
+var web3_chain2 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_2/geth.ipc', net);
+var web3_chain3 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_3/geth.ipc', net);
+var web3_chain4 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_4/geth.ipc', net);
+var web3_chain5 = new Web3('/Users/benson/BRAINEUM_HACKATHON/ethereum_src/braineum_chaindir_5/geth.ipc', net);
+
+earth = 0;
+moon = 0;
+mars = 0;
+jupiter = 0;
+pluto = 0;
+miningOnFlag = 0;
+
+const clients = {};
+
+// This code generates unique userid for everyuser.
+const getUniqueID = () => {
+  const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  return s4() + s4() + '-' + s4();
+};
+
+
+var noPubAddress = "";
+var noToken = 0;
+var pubAddress = "0xljweoisdfljsdlfieesjfjdljfal";
+var tokenValue = 60;
+
+wsServer.on('request', function (request) {
+ var userID = getUniqueID();
+  console.log((new Date()) + ' Recieved a new connection from origin ' + request.origin + '.');
+
+  // You can rewrite this part of the code to accept only the requests from allowed origin
+  const connection = request.accept(null, request.origin);
+  console.log('connected: ');
+
+
+  clients[userID] = connection;
+  console.log('connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
+
+  function sendMessageToClient(amountEarned, brainRegion, infoMsg, imageIndex, pubAddress, wonToken) {
+    // REVISIT!! assume more than one connection for now. Should only be one.
+
+  var current = new Date();
+  var dateTimeVal = current.toLocaleString();
+
+    for(key in clients) {
+       clients[key].send(JSON.stringify({
+          type: "message",
+          amount: amountEarned, 
+          region: brainRegion,
+          infomsg: infoMsg,
+	  imageindex: imageIndex,
+	  pubaddress: pubAddress,
+	  wontoken: wonToken,
+	  datetimeval: dateTimeVal,
+          miner1: "Earth: " + earth,
+          miner2: "Moon: " + moon,
+          miner3: "Mars: " + mars,
+          miner4: "Jupiter: " + jupiter,
+          miner5: "Pluto: " + pluto,
+          miningonflag: miningOnFlag
+    }))
+   }
+  }
+
+  function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+  }
+
+
+  // Do we have a jackpot winner or loser?
+  function jackpotWinnerOrLoser(userPublicKey) {
+
+    // mines are grouped into 10 clusters and each cluster has 1000 mines.
+    clusterId = getRandomInt(10);
+    mineId = getRandomInt(1000);
+
+    switch(getRandomInt(clusterId)) {
+        case 0:
+          console.log("Cluster 0 " + " MineId: " + mineId);
+          return("Cluster 0 " + " MineId: " + mineId);
+
+        case 1:
+          console.log("Cluster 1 " + " MineId: " + mineId);
+          return("Cluster 1 " + " MineId: " + mineId);
+
+        case 2:
+          console.log("Cluster 2 " + " MineId: " + mineId);
+          return("Cluster 2 " + " MineId: " + mineId);
+
+        case 3:
+          console.log("Cluster 3 " + " MineId: " + mineId);
+          return("Cluster 3 " + " MineId: " + mineId);
+
+        case 4:
+          console.log("Cluster 4 " + " MineId: " + mineId);
+          return("Cluster 4 " + " MineId: " + mineId);
+
+        case 5:
+          console.log("Cluster 5 " + " MineId: " + mineId);
+          return("Cluster 5 " + " MineId: " + mineId);
+
+        case 6:
+          console.log("Cluster 6 " + " MineId: " + mineId);
+          return("Cluster 6 " + " MineId: " + mineId);
+
+        case 7:
+          console.log("Cluster 7 " + " MineId: " + mineId);
+          return("Cluster 7 " + " MineId: " + mineId);
+
+        case 8:
+          console.log("Cluster 8 " + " MineId: " + mineId);
+          return("Cluster 8 " + " MineId: " + mineId);
+
+        case 9:
+          console.log("Cluster 9 " + " MineId: " + mineId);
+          return("Cluster 9 " + " MineId: " + mineId);
+
+       default:
+	  console.log("Error: cluster id greater than required maximum.");
+          return("Cluster 9 " + " MineId: " + mineId); // default.
+    }
+   } 
+
+  
+  function startBlockchainGame(arg) {
+    console.log(`arg was => ${arg}`);
+
+    var endOfDayMsg = "The End";
+
+    if (LifeCoins <= 0) {
+            //console.log("You've Died!!");
+            console.log(endOfDayMsg);
+            console.log("Send to Blockchain Wallet:  ", LifeCoins);
+            //sendMessageToClient(LifeCoins, -9, "You've Died!!", 11); //-9 means dead.
+            sendMessageToClient(LifeCoins, -9, endOfDayMsg, 11, noPubAddress, noToken); //-9 means dead.
+            clearInterval(intervalObj);
+            return;
+    } 
+    
+    if (LifeCoins >= 1000) {
+      //console.log("You've died wealthy.");
+      //sendMessageToClient(LifeCoins, -9, "You've Died!!", 11); //-9 means dead.
+      console.log(endOfDayMsg);
+      sendMessageToClient(LifeCoins, -9, endOfDayMsg, 11, noPubAddress, noToken); //-9 means dead.
+      clearInterval(intervalObj);
+      return;
+    }
+
+    if (LifeCoins > 200 && LifeCoins <= 500) {
+            console.log("You're rich");
+    }  
+
+    if (LifeCoins > 500) {
+      console.log("You're super-rich; Donating 100 BRAI to charity.");
+      console.log("Send to Blockchain Wallet: lost 100 BRAI");
+      LifeCoins = LifeCoins - 100;
+      sendMessageToClient(LifeCoins, 7, "Gave $100 to charity", 10, noPubAddress, noToken); //7 arbitrary.
+    }
+
+
+    // random integer: 0 and 8.
+    switch(getRandomInt(9)) {
+        case 0:
+          console.log("Bad event: ");
+          console.log("Send to Blockchain Wallet:  lost 2 BRAIs");
+          new_coins = -2;
+          LifeCoins += new_coins;
+          sendMessageToClient(LifeCoins, 5, "Heigh ho, heigh ho", 0, noPubAddress, noToken); //5 arbitrary.
+          break;
+
+        case 1:
+          console.log("Blockchain 1: ");
+          web3_chain1.eth.getBlockNumber(function(err, block_number_chain1) {
+            if (err) {
+              console.log(err)
+            } else {
+              earth = block_number_chain1;
+              //console.log("Chain1: current block:" + block_number_chain1 + "  brain region " + block_number_chain1 % 20)
+              console.log("Chain1: current block:" + block_number_chain1 + "  brain region " + 1)
+            }
+          })
+          console.log("Send to Blockchain Wallet: earned 1 BRAI");
+          new_coins = 1;
+          LifeCoins += new_coins;
+          sendMessageToClient(LifeCoins, 5, "It's off to work I go", 1, noPubAddress, noToken); //5 arbitrary.
+          break;
+
+        case 2:
+          console.log("Blockchain 2: ");
+          web3_chain2.eth.getBlockNumber(function(err, block_number_chain2) {
+            if (err) {
+              console.log(err)
+            } else {
+              moon = block_number_chain2;
+              //console.log("Chain2: current block:" + block_number_chain2 + "  brain region " + block_number_chain2 % 20)
+              console.log("Chain2: current block:" + block_number_chain2 + "  brain region " + 2)
+            }
+          })
+          console.log("Send to Blockchain Wallet: earned 2 BRAIs");
+          new_coins = 2;
+          LifeCoins += new_coins;    
+          sendMessageToClient(LifeCoins, 5, "It's home from work we go", 2, noPubAddress, noToken); //5 arbitrary. 
+          break;
+
+        case 3:
+          console.log("Blockchain 3: ");
+          web3_chain3.eth.getBlockNumber(function(err, block_number_chain3) {
+            if (err) {
+              console.log(err)
+            } else {
+              mars = block_number_chain3;
+              //console.log("Chain3: current block:" + block_number_chain3 + "  brain region " + block_number_chain3 % 20)
+              console.log("Chain3: current block:" + block_number_chain3 + "  brain region " + 3)
+            }
+          })
+
+          console.log("Send to Blockchain Wallet: earned 7 BRAIs");
+          new_coins = 7;
+          LifeCoins += new_coins;
+          sendMessageToClient(LifeCoins, 5, "Heigh ho, heigh ho", 3, noPubAddress, noToken); //5 arbitrary.  
+          break;
+
+          case 4:
+            console.log("Blockchain 4: ");
+            web3_chain4.eth.getBlockNumber(function(err, block_number_chain4) {
+              if (err) {
+                console.log(err)
+              } else {
+                jupiter = block_number_chain4;
+                //console.log("Chain4: current block:" + block_number_chain4 + "  brain region " + block_number_chain4 % 20)
+                console.log("Chain4: current block:" + block_number_chain4 + "  brain region " + 4)
+
+              }
+            })
+            
+            console.log("Send to Blockchain Wallet: earned 3 BRAIs");
+            new_coins = 3;
+            LifeCoins += new_coins; 
+            sendMessageToClient(LifeCoins, 5, "Heigh ho, Heigh ho, hum", 4, noPubAddress, noToken); //5 arbitrary.
+            break;
+
+          case 5:
+            console.log("Blockchain 5: ");
+            web3_chain5.eth.getBlockNumber(function(err, block_number_chain5) {
+              if (err) {
+                console.log(err)
+              } else {
+                pluto = block_number_chain5;
+                //console.log("Chain5: current block:" + block_number_chain5 + "  brain region " + block_number_chain5 % 20)
+                console.log("Chain5: current block:" + block_number_chain5 + "  brain region " + 5)
+              }
+            })
+
+	    // the user has been selected to see if he is a jackpot winner.
+  	    winningAmount = jackpotWinnerOrLoser("userPublicKey=>needed here");
+            console.log("Send to Blockchain Wallet: your lucky day; won ==> 350 BRAIs");
+            new_coins = 350;
+            LifeCoins += new_coins;
+	    pubAddress = "0xljweoisdfljsdlfieesjfjdljfal";
+	    tokenValue = 60;
+            sendMessageToClient(LifeCoins, 5, "***Won Jackpot***" + winningAmount, 5, pubAddress, tokenValue); //5 arbitrary. 
+          break;
+
+          case 6:
+            console.log("Bad event: ");
+            console.log("Send to Blockchain Wallet:  lost 1 BRAI");
+            new_coins = -1;
+            LifeCoins += new_coins;
+            sendMessageToClient(LifeCoins, 5, "Heigh ho, Heigh ho", 6, noPubAddress, noToken); //5 arbitrary. 
+          break;
+            
+          case 7:
+            console.log("Bad event: ");
+            console.log("Send to Blockchain Wallet:  lost 3 BRAIs");
+            new_coins = -3;
+            LifeCoins += new_coins;
+            sendMessageToClient(LifeCoins, 5, "Heigh ho, Heigh ho", 7, noPubAddress, noToken); //5 arbitrary. 
+          break;
+            
+          case 8:
+            console.log("Bad event: ");
+            console.log("Send to Blockchain Wallet:  lost 10 BRAIs");
+            new_coins = -10;
+            LifeCoins += new_coins;
+            sendMessageToClient(LifeCoins, 5, "Heigh ho, hum", 8, noPubAddress, noToken); //5 arbitrary.
+          break;
+
+          default:
+            console.log("Bad event: ");
+            console.log("Send to Blockchain Wallet:  lost 1 BRAI");
+            new_coins = -1;
+            LifeCoins += new_coins; 
+            sendMessageToClient(LifeCoins, 5, "It's home from work we go", 9, noPubAddress, noToken); //5 arbitrary.
+          break;
+          }
+        }
+
+
+  var usermsg = null;
+
+  connection.on('message', function(message) {
+    
+    if (message.type === 'utf8') {
+      console.log('Received Message: ', message.utf8Data);
+      usermsg = JSON.parse(message.utf8Data);
+    }
+
+    if (usermsg.msg === "StartGame") {
+      console.log("Hey Benson: Start Game Received");
+      intervalObj= setInterval(startBlockchainGame, 1500, "Start interval called");
+ 
+      new_coins = 100;
+      LifeCoins = new_coins;
+      console.log("Welcome to Earth: Today is your birth day.");
+      console.log("Send to Blockchain Wallet:  earn 100 BRAI");
+      sendMessageToClient(new_coins, 5, "Snow White's Miners", 0, noPubAddress, noToken); //5 arbitrary.
+    }  
+  
+    if (usermsg.msg === "EndGame") {
+      console.log("Hey Benson: End Game Received");
+      clearInterval(intervalObj);
+    }
+
+    if (usermsg.msg === "StartMiners") {
+      miningOnFlag = 1;
+      console.log("Hey Benson: Start Miners Received");
+      shell.exec('/Users/benson/BRAINEUM_HACKATHON/dev/braineum/braineum/hack_src/run_miner_start_all.sh');
+    }
+  
+    if (usermsg.msg === "StopMiners") {
+      miningOnFlag = 0;
+      console.log("Hey Benson: Stop Miners Received");
+      shell.exec('/Users/benson/BRAINEUM_HACKATHON/dev/braineum/braineum/hack_src/run_miner_stop_all.sh');
+    }   
+      // REVISIT!! TO BE FIXED. broadcasting message to all connected clients
+      //for(key in clients) {
+        //clients[key].sendUTF(message.utf8Data);
+        //console.log('sent Message to: ', clients[key]);
+      //} 
+    })
+});
+

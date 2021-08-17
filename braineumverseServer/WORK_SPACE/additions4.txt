@@ -1,0 +1,220 @@
+
+
+  function getRandomNewScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeibx3ds2rvfb35unt7jjjerudqnjiv66ds24zmi7j3iotdm6mpa3au.ipfs.dweb.link/random_view/random_1.jpeg");
+
+        case 1:
+return("https://bafybeibx3ds2rvfb35unt7jjjerudqnjiv66ds24zmi7j3iotdm6mpa3au.ipfs.dweb.link/random_view/random_2.jpeg");
+
+        case 2:
+return("https://bafybeibx3ds2rvfb35unt7jjjerudqnjiv66ds24zmi7j3iotdm6mpa3au.ipfs.dweb.link/random_view/random_3.jpeg");
+
+        case 3:
+return("https://bafybeibx3ds2rvfb35unt7jjjerudqnjiv66ds24zmi7j3iotdm6mpa3au.ipfs.dweb.link/random_view/random_4.jpeg");
+
+        case 4:
+return("https://bafybeibx3ds2rvfb35unt7jjjerudqnjiv66ds24zmi7j3iotdm6mpa3au.ipfs.dweb.link/random_view/random_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeibx3ds2rvfb35unt7jjjerudqnjiv66ds24zmi7j3iotdm6mpa3au.ipfs.dweb.link/random_view/random_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+  function getFriendsScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeic5lsayqi2a746paxnhlbqid6fk6acgkquy3hvuc4gzey7aaxxxuq.ipfs.dweb.link/models_view/models_1.jpeg");
+
+        case 1:
+return("https://bafybeic5lsayqi2a746paxnhlbqid6fk6acgkquy3hvuc4gzey7aaxxxuq.ipfs.dweb.link/models_view/models_2.jpeg");
+
+        case 2:
+return("https://bafybeic5lsayqi2a746paxnhlbqid6fk6acgkquy3hvuc4gzey7aaxxxuq.ipfs.dweb.link/models_view/models_3.jpeg");
+
+        case 3:
+return("https://bafybeic5lsayqi2a746paxnhlbqid6fk6acgkquy3hvuc4gzey7aaxxxuq.ipfs.dweb.link/models_view/models_4.jpeg");
+
+        case 4:
+return("https://bafybeic5lsayqi2a746paxnhlbqid6fk6acgkquy3hvuc4gzey7aaxxxuq.ipfs.dweb.link/models_view/models_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeic5lsayqi2a746paxnhlbqid6fk6acgkquy3hvuc4gzey7aaxxxuq.ipfs.dweb.link/models_view/models_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getHomeScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeifuiyt25c5ggjpxvpio3napvjhxxrcoiuzqqaykumbbowh5z4iluu.ipfs.dweb.link/home_view/home_1.jpeg");
+
+        case 1:
+return("https://bafybeifuiyt25c5ggjpxvpio3napvjhxxrcoiuzqqaykumbbowh5z4iluu.ipfs.dweb.link/home_view/home_2.jpeg");
+
+        case 2:
+return("https://bafybeifuiyt25c5ggjpxvpio3napvjhxxrcoiuzqqaykumbbowh5z4iluu.ipfs.dweb.link/home_view/home_3.jpeg");
+
+        case 3:
+return("https://bafybeifuiyt25c5ggjpxvpio3napvjhxxrcoiuzqqaykumbbowh5z4iluu.ipfs.dweb.link/home_view/home_4.jpeg");
+
+        case 4:
+return("https://bafybeifuiyt25c5ggjpxvpio3napvjhxxrcoiuzqqaykumbbowh5z4iluu.ipfs.dweb.link/home_view/home_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeifuiyt25c5ggjpxvpio3napvjhxxrcoiuzqqaykumbbowh5z4iluu.ipfs.dweb.link/home_view/home_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+  function getGlobalScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeifimxu5dwiemi34wow4f263yov7zpqsktr6dqmloeo7sd6p32byyu.ipfs.dweb.link/global_view/global_1.jpeg");
+
+        case 1:
+return("https://bafybeifimxu5dwiemi34wow4f263yov7zpqsktr6dqmloeo7sd6p32byyu.ipfs.dweb.link/global_view/global_2.jpeg");
+
+        case 2:
+return("https://bafybeifimxu5dwiemi34wow4f263yov7zpqsktr6dqmloeo7sd6p32byyu.ipfs.dweb.link/global_view/global_3.jpeg");
+
+        case 3:
+return("https://bafybeifimxu5dwiemi34wow4f263yov7zpqsktr6dqmloeo7sd6p32byyu.ipfs.dweb.link/global_view/global_4.jpeg");
+
+        case 4:
+return("https://bafybeifimxu5dwiemi34wow4f263yov7zpqsktr6dqmloeo7sd6p32byyu.ipfs.dweb.link/global_view/global_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeifimxu5dwiemi34wow4f263yov7zpqsktr6dqmloeo7sd6p32byyu.ipfs.dweb.link/global_view/global_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+  function getFlatbushAveScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeibo7wz37rw22ys3rpqsuzf4ezmubdrzoka2xnulfeedgsigh3czhy.ipfs.dweb.link/flatbush_ave_view/flatbush_1.jpeg");
+
+        case 1:
+return("https://bafybeibo7wz37rw22ys3rpqsuzf4ezmubdrzoka2xnulfeedgsigh3czhy.ipfs.dweb.link/flatbush_ave_view/flatbush_2.jpeg");
+
+        case 2:
+return("https://bafybeibo7wz37rw22ys3rpqsuzf4ezmubdrzoka2xnulfeedgsigh3czhy.ipfs.dweb.link/flatbush_ave_view/flatbush_3.jpeg");
+
+        case 3:
+return("https://bafybeibo7wz37rw22ys3rpqsuzf4ezmubdrzoka2xnulfeedgsigh3czhy.ipfs.dweb.link/flatbush_ave_view/flatbush_4.jpeg");
+
+        case 4:
+return("https://bafybeibo7wz37rw22ys3rpqsuzf4ezmubdrzoka2xnulfeedgsigh3czhy.ipfs.dweb.link/flatbush_ave_view/flatbush_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeibo7wz37rw22ys3rpqsuzf4ezmubdrzoka2xnulfeedgsigh3czhy.ipfs.dweb.link/flatbush_ave_view/flatbush_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getLiveEventScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeib43vx7s4u5gwdxzsd5tdz47e4sk3cxplebbosyfteojpy3wqposa.ipfs.dweb.link/events_view/event_1.jpeg");
+
+        case 1:
+return("https://bafybeib43vx7s4u5gwdxzsd5tdz47e4sk3cxplebbosyfteojpy3wqposa.ipfs.dweb.link/events_view/event_2.jpeg");
+
+        case 2:
+return("https://bafybeib43vx7s4u5gwdxzsd5tdz47e4sk3cxplebbosyfteojpy3wqposa.ipfs.dweb.link/events_view/event_3.jpeg");
+
+        case 3:
+return("https://bafybeib43vx7s4u5gwdxzsd5tdz47e4sk3cxplebbosyfteojpy3wqposa.ipfs.dweb.link/events_view/event_4.jpeg");
+
+        case 4:
+return("https://bafybeib43vx7s4u5gwdxzsd5tdz47e4sk3cxplebbosyfteojpy3wqposa.ipfs.dweb.link/events_view/event_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeib43vx7s4u5gwdxzsd5tdz47e4sk3cxplebbosyfteojpy3wqposa.ipfs.dweb.link/events_view/event_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getCitiesScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeicsuwx3aid2d3tzbmity7tps477cpuimxalef7nsmbc5b66vq27ze.ipfs.dweb.link/city_view/city_1.jpeg");
+
+        case 1:
+return("https://bafybeicsuwx3aid2d3tzbmity7tps477cpuimxalef7nsmbc5b66vq27ze.ipfs.dweb.link/city_view/city_2.jpeg");
+
+        case 2:
+return("https://bafybeicsuwx3aid2d3tzbmity7tps477cpuimxalef7nsmbc5b66vq27ze.ipfs.dweb.link/city_view/city_3.jpeg");
+
+        case 3:
+return("https://bafybeicsuwx3aid2d3tzbmity7tps477cpuimxalef7nsmbc5b66vq27ze.ipfs.dweb.link/city_view/city_4.jpeg");
+
+        case 4:
+return("https://bafybeicsuwx3aid2d3tzbmity7tps477cpuimxalef7nsmbc5b66vq27ze.ipfs.dweb.link/city_view/city_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeicsuwx3aid2d3tzbmity7tps477cpuimxalef7nsmbc5b66vq27ze.ipfs.dweb.link/city_view/city_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getBrooklynMuseumScene(arg_event_number) {
+    switch(arg_event_number) {
+        case 0:
+return("https://bafybeicjgk6cafam7wqokosnmqgzi3izvxynco7ssexnimc2kbonff5wce.ipfs.dweb.link/brooklyn_museum_view/museum_view_1.jpeg");
+
+        case 1:
+return("https://bafybeicjgk6cafam7wqokosnmqgzi3izvxynco7ssexnimc2kbonff5wce.ipfs.dweb.link/brooklyn_museum_view/museum_view_2.jpeg");
+
+        case 2:
+return("https://bafybeicjgk6cafam7wqokosnmqgzi3izvxynco7ssexnimc2kbonff5wce.ipfs.dweb.link/brooklyn_museum_view/museum_view_3.jpeg");
+
+        case 3:
+return("https://bafybeicjgk6cafam7wqokosnmqgzi3izvxynco7ssexnimc2kbonff5wce.ipfs.dweb.link/brooklyn_museum_view/museum_view_4.jpeg");
+
+        case 4:
+return("https://bafybeicjgk6cafam7wqokosnmqgzi3izvxynco7ssexnimc2kbonff5wce.ipfs.dweb.link/brooklyn_museum_view/museum_view_5.jpeg");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+return("https://bafybeicjgk6cafam7wqokosnmqgzi3izvxynco7ssexnimc2kbonff5wce.ipfs.dweb.link/brooklyn_museum_view/museum_view_1.jpeg");
+          //return("EOF");
+    }
+   }
+
+  function getNewsScene(arg_event_number) {
+	return(getRandomNewScene(event_number)); // add its own links later.
+  }
+  function getSuggestionsScene(arg_event_number) {
+       return(getGlobalScene(event_number)); // add its own links later.
+
+  }

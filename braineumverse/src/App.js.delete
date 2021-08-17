@@ -1,0 +1,173 @@
+import React, { Component } from 'react';
+import Web3 from 'web3';
+import './App.css';
+//import MiningStats from './MiningStats';
+//import BraineumToken from '../abis/BraineumToken.json'
+import brain from './brain.png';
+import { w3cwebsocket as W3CWebSocket } from "websocket";
+
+const client = new W3CWebSocket('ws://127.0.0.1:8000');
+
+constructor(props) {
+    super(props);
+    this.state = {
+      account: '0x0',
+      token: null,
+      totalSupply: 0,
+      tokenURIs: [],
+      cardArray: [],
+      cardsChosen: [],
+      cardsChosenId: [],
+      cardsWon: [],
+      bankAccount: 0,
+      brainRegion: 0,
+      infoMessage: "Mining Braineum is Totally Efficient And Rewarding",
+      imageIndex: 0,
+      miner1: null,
+      miner2: null,
+      miner3: null,
+      miner4: null,
+      miner5: null,
+      miningOnFlag: 0,
+      amountMinted: 0,
+      pubAddress: "",
+      wonToken: 0,
+      lastPubAddressWon: "",
+      lastTokenWon: 0,
+      dateTimeVal: "",
+    }
+  }
+  
+render() {
+    return (
+      <div>
+        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+          <a
+            className="navbar-brand col-sm-3 col-md-2 mr-0"
+            href="http://www.braineum.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+        <img src={brain} width="30" height="30" className="d-inline-block align-top" alt="" /> 
+ &nbsp; BraineumVerse
+          </a>
+          <ul className="navbar-nav px-3">
+            <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
+              <small className="text-muted"><span id="account">{this.state.account}</span></small>
+            </li>
+          </ul>
+        </nav>
+        <div className="container-fluid mt-5">
+          <div className="row">
+            <main role="main" className="col-lg-12 d-flex text-center">
+
+              <div className="content mr-auto ml-auto">
+              <h3 className="d-4">BraineumVerse</h3>
+              <br/>
+ 
+              <h5>Mining For Braineum</h5> 
+   
+ {/*             <h6>MiningStats | Wallet | DAO | DeFi | NFT | DeX | Bitcoin | Fiat | CBDC | WallStreet</h6> */}
+             <h6><a href="MiningStats">MiningStats</a>&nbsp;|&nbsp;
+              <a href="Wallet">Wallet</a>&nbsp;|&nbsp;
+               <a href="DAO">DAO</a>&nbsp;|&nbsp;
+                 <a href="DeFi">DeFi</a>&nbsp;|&nbsp;
+              <a href="NFT">NFT</a>&nbsp;|&nbsp;
+               <a href="DEX">DEX</a>&nbsp;|&nbsp;
+              <a href="Bitcoin">Bitcoin</a>&nbsp;|&nbsp;
+               <a href="Fiat">Fiat</a>&nbsp;|&nbsp;
+              <a href="CBDC">CBDC</a>&nbsp;|&nbsp;
+              <a href="WallStreet">WallStreet</a> </h6>
+              <div align="right">
+              <h6><a href="Settings">Settings</a>&nbsp;|&nbsp;
+              <a href="Profile">Profile</a></h6>
+              </div>
+
+                <br/>
+            <img src={this.chooseImage(this.state.imageIndex)}/> 
+              <br/>
+
+{/*              <h1>${this.state.bankAccount}</h1> */}
+              <br/>
+              <h6>{this.state.infoMessage}</h6>
+ {/*             <h5>{this.state.imageIndex}</h5> */}
+  {/*            <h6 style={{color:'red'}}>Carbon Footprint: ** Zero **</h6> */}
+
+              <br/>
+              <button onClick={()=>this.onButtonClicked('StartGame')}>Start Mining</button>
+              &nbsp; &nbsp; &nbsp;
+              <button onClick={()=>this.onButtonClicked('EndGame')}>Stop Mining</button>
+              &nbsp; &nbsp; &nbsp;<br/>
+              <br/>
+              <h6>My Stash</h6>
+ {/*             <img src={this.chooseImage(9)}/> */}
+              <img src='/images/braineum_gold_stash.png'/>
+              <img src='/images/braineum_gold_stash.png'/>
+              <img src='/images/braineum_gold_stash.png'/>
+{/*              <img src='/images/braineum_gold_stash.png'/>
+              <img src='/images/braineum_gold_stash.png'/> */}
+              <br/>
+              {this.showLastJackpotWon(this.state.wonToken)}
+              <h6>Last Mined ({this.state.dateTimeVal}) </h6>
+              <h6>Address:&nbsp;{this.state.lastPubAddressWon}alsdlfjalsdj;ljsdjs;djsdjlsjdljasd&nbsp;==>&nbsp;
+              Amount:&nbsp;{this.state.lastTokenWon}</h6>
+
+ {/*             <button onClick={()=>this.onButtonClicked('Wallet')}>Wallet</button>
+              &nbsp; &nbsp; &nbsp;
+              <button onClick={()=>this.onButtonClicked('DAO')}>DAO</button>
+              &nbsp; &nbsp; &nbsp;
+              <button onClick={()=>this.onButtonClicked('DeFi')}>DeFi</button>
+              &nbsp; &nbsp; &nbsp;
+              <button onClick={()=>this.onButtonClicked('NFT')}>NFT</button>
+              &nbsp; &nbsp; &nbsp;
+              <button onClick={()=>this.onButtonClicked('DEX')}>DEX</button>
+    */}            <br/> <br/>
+              <div>
+            {/* {this.IsMiningOn()} */}
+ {/*            <h6 style={{color: "red"}}>Miners:</h6>
+             {this.state.miner1} &nbsp; &nbsp;
+             {this.state.miner2} &nbsp; &nbsp;
+             {this.state.miner3} &nbsp; &nbsp;
+             {this.state.miner4} &nbsp; &nbsp;
+             {this.state.miner5} &nbsp; &nbsp;
+  <br/> */}
+ {/*             <img src={this.chooseImage(this.state.imageIndex)}/> */}
+              </div>
+              <br/> <br/>
+              <div className="grid mb-4" >
+                  {/* BENSON: REVISIT!! Code goes here... */}
+                  {/* 
+                  { this.state.cardArray.map((card, key) => {
+                    return(
+                      <img
+                        key={key}
+                        src={this.chooseImage(key)}
+                        data-id={key}
+                      />
+                    )
+                  })}*/}
+                </div>
+
+                <div>
+
+                  {/* Code goes here... */}
+
+                  <div className="grid mb-4" >
+
+                    {/* Code goes here... */}
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </main>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;

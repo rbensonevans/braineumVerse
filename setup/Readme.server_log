@@ -1,0 +1,9 @@
+Setting up the Server
+=====================
+
+node braineumVerseServer.js
+---> see error messages
+npm install nodejs
+npm install web3
+npm install shelljs 
+node braineumVerseServer.js

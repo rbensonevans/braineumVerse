@@ -1,0 +1,279 @@
+
+  function getBrooklynMuseumScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getRandomNewScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getHomeScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getGlobalScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getFriendsScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getCitiesScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getLiveEventScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getFlatbushAvenueScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getNewsScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
+
+
+  function getSuggestionsScene(arg_event_number) {
+    
+    switch(arg_event_number) {
+        case 0:
+          return("");
+
+        case 1:
+          return("");
+
+        case 2:
+          return("");
+
+        case 3:
+          return("");
+
+        case 5:
+          return("");
+
+       default:
+          console.log("Error: out of bounds event_number.");
+	  event_number = 0; // wrap the global event number.
+          return("");
+          //return("EOF");
+    }
+   }
+
